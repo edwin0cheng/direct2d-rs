@@ -33,7 +33,7 @@ impl Ellipse {
     #[inline]
     pub fn get_ellipse(&self) -> math::Ellipse {
         unsafe {
-            let mut ellipse: D2D1_ELLIPSE = mem::uninitialized();
+            let mut ellipse: D2D1_ELLIPSE = mem::MaybeUninit::uninit().assume_init();
             self.ptr.GetEllipse(&mut ellipse);
             math::Ellipse(ellipse)
         }

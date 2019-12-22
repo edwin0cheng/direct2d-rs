@@ -74,7 +74,7 @@ pub struct LayerBuilder<'a, 'b, R: RenderTarget + 'a> {
     mask_aa: AntialiasMode,
     mask_tr: Matrix3x2F,
     opacity: f32,
-    opacity_brush: Option<&'b Brush>,
+    opacity_brush: Option<&'b dyn Brush>,
     layer_opts: LayerOptions,
 }
 

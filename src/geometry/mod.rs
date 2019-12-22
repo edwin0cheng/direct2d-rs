@@ -73,7 +73,7 @@ pub trait Geometry {
                 None => ptr::null(),
             };
 
-            let mut rect: D2D1_RECT_F = mem::uninitialized();
+            let mut rect: D2D1_RECT_F = mem::MaybeUninit::uninit().assume_init();
             let result = (*ptr).GetBounds(matrix, &mut rect);
             if SUCCEEDED(result) {
                 Ok(math::RectF(rect))
@@ -103,7 +103,7 @@ pub trait Geometry {
                 None => ptr::null_mut(),
             };
 
-            let mut rect: D2D1_RECT_F = mem::uninitialized();
+            let mut rect: D2D1_RECT_F = mem::MaybeUninit::uninit().assume_init();
             let result = (*ptr).GetWidenedBounds(
                 stroke_width,
                 stroke_style,
@@ -279,8 +279,8 @@ pub trait Geometry {
                 None => ptr::null(),
             };
 
-            let mut point: D2D1_POINT_2F = mem::uninitialized();
-            let mut tangent: D2D1_POINT_2F = mem::uninitialized();
+            let mut point: D2D1_POINT_2F = mem::MaybeUninit::uninit().assume_init();
+            let mut tangent: D2D1_POINT_2F = mem::MaybeUninit::uninit().assume_init();
             let result = (*ptr).ComputePointAtLength(
                 length,
                 matrix,

@@ -9,6 +9,5 @@ pub mod bitmap;
 pub mod generic;
 
 pub trait Image {
-    #[inline]
     unsafe fn get_ptr(&self) -> *mut ID2D1Image;
 }

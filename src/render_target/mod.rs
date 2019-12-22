@@ -131,7 +131,6 @@ where
 
 pub trait RenderTarget {
     #[doc(hidden)]
-    #[inline]
     unsafe fn rt<'a>(&self) -> &'a mut ID2D1RenderTarget;
 
     #[doc(hidden)]
@@ -503,7 +502,7 @@ pub trait RenderTarget {
     #[inline]
     fn get_transform(&self) -> Matrix3x2F {
         unsafe {
-            let mut mat: Matrix3x2F = mem::uninitialized();
+            let mut mat: Matrix3x2F = mem::MaybeUninit::uninit().assume_init();
             self.rt().GetTransform(&mut mat.0);
             mat
         }

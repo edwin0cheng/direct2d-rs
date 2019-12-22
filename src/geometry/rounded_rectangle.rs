@@ -31,7 +31,7 @@ impl RoundedRectangle {
     #[inline]
     pub fn get_rounded_rect(&self) -> math::RoundedRect {
         unsafe {
-            let mut rect: D2D1_ROUNDED_RECT = mem::uninitialized();
+            let mut rect: D2D1_ROUNDED_RECT = mem::MaybeUninit::uninit().assume_init();
             self.ptr.GetRoundedRect(&mut rect);
             math::RoundedRect(rect)
         }

@@ -151,7 +151,7 @@ unsafe fn real_window_test() {
     ShowWindow(hwnd, SW_SHOW);
     SetTimer(hwnd, 0, 1_000, None);
 
-    let mut msg: MSG = mem::uninitialized();
+    let mut msg: MSG = mem::MaybeUninit::uninit().assume_init();
     loop {
         match GetMessageW(&mut msg, hwnd, 0, 0) {
             -1 => break,

@@ -63,7 +63,7 @@ pub trait Brush {
     #[inline]
     fn get_transform(&self) -> Matrix3x2F {
         unsafe {
-            let mut mat: Matrix3x2F = mem::uninitialized();
+            let mut mat: Matrix3x2F = mem::MaybeUninit::uninit().assume_init();
             (*self.get_ptr()).GetTransform(&mut mat.0);
             mat
         }

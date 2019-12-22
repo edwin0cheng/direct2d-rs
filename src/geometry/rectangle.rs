@@ -31,7 +31,7 @@ impl Rectangle {
     #[inline]
     pub fn get_rect(&self) -> math::RectF {
         unsafe {
-            let mut rect: D2D1_RECT_F = mem::uninitialized();
+            let mut rect: D2D1_RECT_F = mem::MaybeUninit::uninit().assume_init();
             self.ptr.GetRect(&mut rect);
             math::RectF(rect)
         }

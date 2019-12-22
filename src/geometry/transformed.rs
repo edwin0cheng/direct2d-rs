@@ -26,7 +26,7 @@ impl Transformed {
     #[inline]
     pub fn get_transform(&self) -> math::Matrix3x2F {
         unsafe {
-            let mut matrix: D2D1_MATRIX_3X2_F = mem::uninitialized();
+            let mut matrix: D2D1_MATRIX_3X2_F = mem::MaybeUninit::uninit().assume_init();
             self.ptr.GetTransform(&mut matrix);
             math::Matrix3x2F(matrix)
         }
